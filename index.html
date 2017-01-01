@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Yuriy Starokozhko">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>test Blog</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+		<h1>Test Blog</h1>
+		<div class="account">
+			<button id="register" class="ui-button ui-corner-all ui-widget in-admin">
+				<span class="ui-icon ui-icon ui-icon-key"></span>
+				Регистрация </button>
+
+				<button id="in-admin" class="ui-button ui-corner-all ui-widget in-admin">
+					<span class="ui-icon ui-icon ui-icon-home"></span>
+					Вход </button>
+
+
+				</div>
+			</header>
+
+			<div class="content">
+				<div class="item">
+					<h2>Title 0</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptate! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolorem repellendus eum eveniet illum mollitia!</p>
+					<ul id="icons" class="ui-widget ui-helper-clearfix">
+						<li class="ui-state-default ui-corner-all" title=".ui-icon-person"><span class="ui-icon ui-icon ui-icon-person"></span>51</li>
+						<li class="ui-state-default ui-corner-all" title=".ui-icon-comment"><span class="ui-icon ui-icon-comment"></span>15</li>
+					</ul>
+				</div>
+
+				<div class="item">
+					<h2>Title 1</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptate! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolorem repellendus eum eveniet illum mollitia!</p>
+					<ul id="icons" class="ui-widget ui-helper-clearfix">
+						<li class="ui-state-default ui-corner-all" title=".ui-icon-person"><span class="ui-icon ui-icon ui-icon-person"></span>23</li>
+						<li class="ui-state-default ui-corner-all" title=".ui-icon-comment"><span class="ui-icon ui-icon-comment"></span>3</li>
+					</ul>
+				</div>
+
+				<div class="item">
+					<h2>Title 2</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptate! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolorem repellendus eum eveniet illum mollitia!</p>
+					<ul id="icons" class="ui-widget ui-helper-clearfix">
+						<li class="ui-state-default ui-corner-all" title=".ui-icon-person"><span class="ui-icon ui-icon ui-icon-person"></span>20</li>
+						<li class="ui-state-default ui-corner-all" title=".ui-icon-comment"><span class="ui-icon ui-icon-comment"></span>19</li>
+					</ul>
+				</div>
+
+				
+			</div>
+
+
+			<script src="js/jquery-ui.js"></script>
+			<script src="js/myscript.js"></script>
+
+			<script>
+
+			
+			
+				$( "#button" ).button();
+				$( "#button-icon" ).button({
+					icon: "ui-icon-gear",
+					showLabel: false
+				});
+
+
+
+				$( "#radioset" ).buttonset();
+
+
+
+				$( "#controlgroup" ).controlgroup();
+
+
+
+				$( "#tabs" ).tabs();
+
+
+
+				$( "#dialog" ).dialog({
+					autoOpen: false,
+					width: 400,
+					buttons: [
+					{
+						text: "Ok",
+						click: function() {
+							$( this ).dialog( "close" );
+						}
+					},
+					{
+						text: "Cancel",
+						click: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+					]
+				});
+
+// Link to open the dialog
+$( "#dialog-link" ).click(function( event ) {
+	$( "#dialog" ).dialog( "open" );
+	event.preventDefault();
+});
+
+
+
+$( "#datepicker" ).datepicker({
+	inline: true
+});
+
+
+
+
+$( "#progressbar" ).progressbar({
+	value: 20
+});
+
+
+
+$( "#spinner" ).spinner();
+
+
+
+$( "#menu" ).menu();
+
+
+
+$( "#tooltip" ).tooltip();
+
+
+
+$( "#selectmenu" ).selectmenu();
+
+
+// Hover states on the static widgets
+$( "#dialog-link, #icons li" ).hover(
+	function() {
+		$( this ).addClass( "ui-state-hover" );
+	},
+	function() {
+		$( this ).removeClass( "ui-state-hover" );
+	}
+	);
+</script>
+</body>
+</html>
