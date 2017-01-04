@@ -6,6 +6,7 @@
 }
 header {
 	width: 100%;
+	min-width: 475px;
 	height: 60px;
 	padding: 10px 30px;
 	background-color: #999;
@@ -31,14 +32,17 @@ h1 {
 
 .content {
 	width: 80%;
-	padding: 20px;
+	min-width: 380px;
 	margin: 0 auto;
 	background-color: #ccc;
 	height: auto;
 }
 .item {
-	padding: 20px 0;
+	padding: 20px;
 	border-bottom: 1px dashed #999;
+	display: block;
+	color: rgba(0,0,0,0.8);
+	text-decoration: none;
 }
 h2 {
 	margin-bottom: 15px;
@@ -110,4 +114,47 @@ form {
 }
 #radio1 ~ label {
 	margin-right: 15px;
+}
+.item:hover {
+	background-color: #ccf;
+}
+.shortText {
+	display: block;
+}
+.allText {
+	display: none;
+}
+
+/*page стили */
+.content-item {
+	/*padding: 20px;*/
+	border-top: 10px dashed #fff;
+	margin: 0 10px 10px;
+	padding: 0 20px 20px;
+}
+.right {
+	float: right;
+}
+.content-titel {
+	margin-top: 40px;
+}
+h4 {
+	padding-top: 5px;
+	margin-top: 20px;
+	/*border-top: 1px solid #fff;*/
+	color: rgba(0,0,0,0.7);
+}
+.content-coments {
+	width: 100%;
+	min-height: 200px;
+	height: auto;
+	background-color: #fff;
+	margin: 5px 0;
+	border-radius: 0 0 5px 5px;
+}
+.content-link {
+	margin-top: 10px;
+	color: #fff;
+	float: left;
+	text-decoration: none;
 }

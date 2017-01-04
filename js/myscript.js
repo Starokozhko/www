@@ -186,7 +186,16 @@
 
 });
 
+		// вывод полного текста статьи
+		$(".item").click(function(){
+			$(".item").find(".shortText").css('display', 'block');
+			$(".item").find(".allText").css('display', 'none');
 
+			
+				$(this).find(".shortText").css('display', 'none');
+				$(this).find(".allText").css('display', 'block');
+			
+		});
 
 
 // })();
