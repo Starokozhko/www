@@ -8,9 +8,7 @@
 		//затемненная подложка
 		$("<div/>", {
 			"class": "bg-full",
-			click: function(){
-				$('.bg-full').remove();
-			}
+			
 		}).appendTo("body");
 		// сомо модальное окно
 		$("<div/>", {
@@ -185,17 +183,104 @@
 	}
 
 });
+var news = {
+	id: '',
+	title: '',
+	shortText: '',
+	text: '',
+	idAuthor: '',
+	view:'',
+	coments: '',
+	datecreate: ''
+	}
+
+var post = {
+	posts: [],
+	getPost: function(){
+			// var xmlhttp = getXmlHttp();
+			var valSearch = 'SELECT * FROM post';
+
+			// 	xmlhttp.open("POST", 'http://softgroup/adminca/getPost.php?q=' + valSearch, true); //q=' + valSearch
+			// 	xmlhttp.send('q=' + valSearch);
+			// 	xmlhttp.onreadystatechange = function() {
+
+			// 		if (xmlhttp.readyState == 4) {
+			// 			if(xmlhttp.status == 200) {
+			// 				var answerServ = JSON.parse(xmlhttp.responseText);
+			// 				var picture = {};
+			// 				alert('ok');
+
+			// 				// for(var i = 0; i < answerServ.hits.length; i++) {
+			// 				// 	var rand = Math.floor(Math.random() * (answerServ.hits.length - 1) + 1);
+
+			// 				// 	document.getElementById('b' + (i +1 )).style.backgroundImage = "url('" + answerServ.hits[rand].webformatURL + "')";
+			// 				// 	document.getElementById('b' + (i +1 )).childNodes[1].innerHTML = answerServ.hits[rand].tags;
+
+			// 				// }	
+			// 			}
+			// 		}
+			// 	}
+
+
+			var data = $.ajax({
+				async: true,
+				type: 'POST',
+				url: 'http://softgroup/adminca/getPost.php', //?q=' + valSearch,
+				// dataType: 'jsonp',
+				data: 'func=1',
+				success: function(data){
+					console.log('ok!!!');
+					// console.log(data);
+					var json = $.parseJSON(data);
+
+						// console.log(json + ' первый');
+						var count = 0;
+						for( var id in json  ) {
+								 // var value = json[id];
+							this.news = news;
+							this.news.id = json[id].id;
+							this.news.title = json[id].title;
+							this.news.shortText = json[id].shortText;
+							this.news.text = json[id].text;
+							this.news.idAuthor = json[id].isAutor;
+							this.news.view = json[id].view;
+							this.news.coments = json[id].coments;
+							this.news.datecreate = json[id].datecreate;
+							
+							console.log(this.news);
+							post.posts[count] = this.news;
+							count++;
+						}
+
+						console.log(json);
+						return json;
+				},
+				error: function(){console.log('Problem');}
+			}).responseJSON;
+
+// console.log(data);
+console.log(this.posts);
+},
+add: function(){},
+correct: function(){},
+deleted: function(){}
+}
+$('#getpost').click(function(){
+	// console.log('Proverka');
+	post.getPost();
+	console.log(post);
+});
 
 		// вывод полного текста статьи
-		$(".item").click(function(){
-			$(".item").find(".shortText").css('display', 'block');
-			$(".item").find(".allText").css('display', 'none');
+		// $(".item").click(function(){
+		// 	$(".item").find(".shortText").css('display', 'block');
+		// 	$(".item").find(".allText").css('display', 'none');
 
-			
-				$(this).find(".shortText").css('display', 'none');
-				$(this).find(".allText").css('display', 'block');
-			
-		});
+
+		// 		$(this).find(".shortText").css('display', 'none');
+		// 		$(this).find(".allText").css('display', 'block');
+
+		// });
 
 
 // })();

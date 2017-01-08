@@ -136,7 +136,8 @@ form {
 	float: right;
 }
 .content-titel {
-	margin-top: 40px;
+	margin-top: 5px;
+	clear: both;
 }
 h4 {
 	padding-top: 5px;
@@ -157,4 +158,8 @@ h4 {
 	color: #fff;
 	float: left;
 	text-decoration: none;
+}
+.content-date {
+	clear: both;
+	color: rgba(0,0,0,0.5);
 }

@@ -1,10 +1,14 @@
 <?php
 include('conect.php');
 $stmt = $pdo->query('SELECT * FROM post WHERE idPost = '.$content);
+
 $stmt2 = $pdo->query('SELECT * FROM coments');
 $back = $_SERVER['HTTP_REFERER'];
 while ($row = $stmt->fetch())
 {
+$view = $row['view'];
+$row['view']++;
+$stmtSet = $pdo->query("UPDATE  `softgroup`.`post` SET  `view` =  ($view+1) WHERE  `post`.`idPost` =$content;");
 
 	echo "<div class='content-item'>";
 	echo "<a class='content-link' href='".$back."'> < назад </a>";
@@ -12,6 +16,9 @@ while ($row = $stmt->fetch())
 	echo "<li class='ui-state-default ui-corner-all' title='.ui-icon-person'><span class='ui-icon ui-icon ui-icon-person'></span>".$row['view']."</li>";
 	echo "<li class='ui-state-default ui-corner-all' title='.ui-icon-comment'><span class='ui-icon ui-icon-comment'></span>".$row['coments']."</li>";
 	echo "</ul>";
+				if($row['datecreate'] != '0000-00-00'){
+						echo "<h6 class='content-date'>".$row['datecreate']."</h6>";
+				}
 	echo "<h2 class='content-titel'>".$row['titlePost']."</h2>";
 	echo "<p  class='content-text'>".$row['text']."</p>";
 
