@@ -34,11 +34,12 @@ border-left: 10px solid rgba(0,0,0,0.6);
 }
 
 .table {
-	/*background-color: #fff;*/
-	width: 400px;
+	width: 100%;
+	display: block;
+	padding: 20px;
 }
 tr {
-	height: 40px;
+	height: 30px;
 }
 table th,
 table td {
@@ -52,4 +53,103 @@ table td {
 .table-cor,
 .table-del {
 	text-align: center;
+}
+
+.table-id-row {
+	text-align: center;
+	font-style:  italic;
+}
+.table-title-row {
+	font-style:  italic;
+	width: 350px;
+	padding-left: 10px;
+}
+td.ui-corner-all {
+	text-align: center;
+	margin: 0 auto;
+}
+
+td.table-button-cor {
+	border-radius: 10px 0 0 10px;
+}
+td.table-button-del {
+	border-radius: 0 10px 10px 0;
+}
+th.table-button-plus {
+	border-radius:  10px;
+}
+th.table-button-plus,
+td.table-button-del,
+td.table-button-cor {
+	cursor: pointer;
+	width: 80px;
+}
+
+.content {
+	padding: 0;
+}
+.admin-add,
+.admin-red {
+	padding: 10px;
+	width: 100%;
+	height: 50px;
+	background-color: rgba(0,0,0,0.9);
+}
+div.content-index {
+	display: block;
+}
+div.content-edition {
+	display: none;
+}
+.admin-add-h2 {
+	color: #fff;
+	margin-left: 20px;
+	text-align: center;
+}
+.right-close {
+	display: inline-block;
+	float: right;
+	color: red;
+	font-size: 20px;
+	margin: 0 10px 0 0;
+	cursor: pointer;
+	text-decoration: none;
+}
+.form-add {
+	line-height: 40px;
+	border-radius: 5px;
+	padding:  0 10px;
+	font-size: 18px;
+	margin: 10px 0;
+}
+.form-add-title {
+	width: 50%;
+}
+.form-add-shortTexe {
+	width: 70%;
+}
+#add {
+	padding: 20px;
+}
+#add textarea {
+	height: 180px;
+}
+.form-add-button {
+	color: rgba(0.0.0.0.9);
+	width: 100%;
+}
+.form-add-button:hover {
+	background-color: #29296b;
+	color: #fff;
+}
+
+.add-text {
+	display: block;
+	width: 100%;
+	height: 300px;
+	padding: 10px;
+	font-size: 18px;
+	background-color: #fff;
+	border-radius: 10px;
+	clear: both;
 }

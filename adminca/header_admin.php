@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>test Blog</title>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	
 	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/admin-style.css">

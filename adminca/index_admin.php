@@ -16,40 +16,46 @@ include("header_admin.php");
 
 
 	<div class="content">
-		<h2>Статьи:</h2>
+		<div class="content-index">
 
-		<table class="table">
-			
+			<div class="admin-add">
+				<h2 class='admin-add-h2'>СТАТЬИ</h2>
+			</div>
+			<table class="table">
+
 				<tr>
 					<th class="table-id">№</th>
 					<th class="table-title">Название статьи</th>
-					<th></th>
-					<th></th>
-				</tr>
-				<tr>
-					<td class="">1</td>
-					<td class="">Первая статься</td>
-					<td id="table-cor" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-pencil"></span></td>
-					<td id="table-del" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"></span></td>
+					<th colspan="2" id="table-add" class="ui-state-default ui-corner-all table-button-plus"><span class="ui-icon ui-icon-plusthick"></span></th>
+
 				</tr>
 
+
+			</table>
 			
-		</table>
 
-<a id="getpost" href="#">Proverka</a>
+		</div>
+
+		<div class="content-edition">
+
+			<div class="admin-red">
+				<h2 class='admin-add-h2'>Редактирование статьи:</h2>
+			</div>
+			<form id="editing" action="index_admin.php" method='POST'>
+				<a href="index_admin.php" class='right-close'>X</a>
+				<input name="add-title" class="form-add form-add-title" type="text" placeholder="Название статьи"/>
+				<input name="add-shortText" class="form-add form-add-shortTexe" type="text" placeholder="Начальный текст"/>
+				<textarea class="add-text" name="add-text" >Полный текст статьи...</textarea>
+				<button class="form-add form-add-button" id="aditionNews">Сохранить изменение</button>
+			</form>
+
+		</div>
+
 	</div>
 
+	<?php
 
-</div>
-
-
-
+	include("../adminca/footer_admin.php");
 
 
-
-<?php
-
-include("../adminca/footer_admin.php");
-
-
-?>
+	?>

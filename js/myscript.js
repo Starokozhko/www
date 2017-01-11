@@ -183,104 +183,214 @@
 	}
 
 });
-var news = {
-	id: '',
-	title: '',
-	shortText: '',
-	text: '',
-	idAuthor: '',
-	view:'',
-	coments: '',
-	datecreate: ''
-	}
+
 
 var post = {
 	posts: [],
 	getPost: function(){
-			// var xmlhttp = getXmlHttp();
-			var valSearch = 'SELECT * FROM post';
 
-			// 	xmlhttp.open("POST", 'http://softgroup/adminca/getPost.php?q=' + valSearch, true); //q=' + valSearch
-			// 	xmlhttp.send('q=' + valSearch);
-			// 	xmlhttp.onreadystatechange = function() {
-
-			// 		if (xmlhttp.readyState == 4) {
-			// 			if(xmlhttp.status == 200) {
-			// 				var answerServ = JSON.parse(xmlhttp.responseText);
-			// 				var picture = {};
-			// 				alert('ok');
-
-			// 				// for(var i = 0; i < answerServ.hits.length; i++) {
-			// 				// 	var rand = Math.floor(Math.random() * (answerServ.hits.length - 1) + 1);
-
-			// 				// 	document.getElementById('b' + (i +1 )).style.backgroundImage = "url('" + answerServ.hits[rand].webformatURL + "')";
-			// 				// 	document.getElementById('b' + (i +1 )).childNodes[1].innerHTML = answerServ.hits[rand].tags;
-
-			// 				// }	
-			// 			}
-			// 		}
-			// 	}
-
-
-			var data = $.ajax({
-				async: true,
-				type: 'POST',
+		var data = $.ajax({
+			async: true,
+			type: 'POST',
 				url: 'http://softgroup/adminca/getPost.php', //?q=' + valSearch,
 				// dataType: 'jsonp',
 				data: 'func=1',
 				success: function(data){
-					console.log('ok!!!');
+					// console.log('ok!!!');
 					// console.log(data);
+					var self = this;
 					var json = $.parseJSON(data);
+					post.posts = json; 
+					// console.log(post.posts);
+					// console.log(post.posts[1]['id']);
+					for(var prop in post.posts) {
+						// console.log(prop);
+						setAdminList(post.posts[prop]['id'], post.posts[prop]['title']);
+					}
 
-						// console.log(json + ' первый');
-						var count = 0;
-						for( var id in json  ) {
-								 // var value = json[id];
-							this.news = news;
-							this.news.id = json[id].id;
-							this.news.title = json[id].title;
-							this.news.shortText = json[id].shortText;
-							this.news.text = json[id].text;
-							this.news.idAuthor = json[id].isAutor;
-							this.news.view = json[id].view;
-							this.news.coments = json[id].coments;
-							this.news.datecreate = json[id].datecreate;
-							
-							console.log(this.news);
-							post.posts[count] = this.news;
-							count++;
-						}
-
-						console.log(json);
-						return json;
 				},
 				error: function(){console.log('Problem');}
 			}).responseJSON;
 
-// console.log(data);
-console.log(this.posts);
-},
-add: function(){},
-correct: function(){},
-deleted: function(){}
+		window.setTimeout(dellNews, 500);
+		window.setTimeout(editionNews, 500);
+	},
+	addNews: function(title, shortText, text, idAuthor){
+		// alert("Сюда зашло!!!");
+		var data = $.ajax({
+			async: true,
+			type: 'POST',
+				url: 'http://softgroup/adminca/reload.php', //?q=' + valSearch,
+				// dataType: 'jsonp',
+				data: {
+					func: 2,
+					title: title,
+					shortText: shortText,
+					text: text,
+					idAuthor: 1
+				},
+				success: function(data){
+
+					
+				},
+				error: function(){console.log('Problem');}
+			});
+
+	},
+	getOne: function(id) {
+
+		var data = $.ajax({
+			async: true,
+			type: 'POST',
+				url: 'http://softgroup/adminca/getPost.php', //?q=' + valSearch,
+				// dataType: 'jsonp',
+				data: {
+						func: 5,
+						news: id,
+				},
+				success: function(data){
+					// console.log('ok!!!');
+					// console.log(data);
+
+					// var self = this;
+					// var json = $.parseJSON(data);
+					// post.posts = json; 
+					// console.log(post.posts[0][id]);
+					// console.log(post.posts[1]['id']);
+					for(var prop in post.posts) {
+						// console.log(prop);
+						// console.log(post.posts[prop]['id']);
+						$('input[name="add-title"')[0].value = post.posts[id]['title'];
+						$('input[name="add-shortText"')[0].value = post.posts[id]['shortText'];
+						$('textarea[name="add-text"')[0].value = post.posts[id]['text'];
+						// console.log(post.posts[prop]['title']);
+					}
+
+				},
+				error: function(){console.log('Problem');}
+			}).responseJSON;
+
+		// debugger;
+						// $('input[name="add-title"')[0].value = post.posts[id]['title'];
+						
+	},
+	correct: function(id){
+
+		post.getOne(id);
+
+	},
+	deleted: function(id){
+		var data = $.ajax({
+			async: true,
+			type: 'POST',
+				url: 'http://softgroup/adminca/getpost.php', //?q=' + valSearch,
+				// dataType: 'jsonp',
+				data: {
+					func: 3,
+					idnews: id,
+				},
+				success: function(data){
+
+					document.location.replace('../adminca/index_admin.php');
+				},
+				error: function(){console.log('Problem');}
+			});
+	}
 }
-$('#getpost').click(function(){
-	// console.log('Proverka');
-	post.getPost();
-	console.log(post);
-});
-
-		// вывод полного текста статьи
-		// $(".item").click(function(){
-		// 	$(".item").find(".shortText").css('display', 'block');
-		// 	$(".item").find(".allText").css('display', 'none');
 
 
-		// 		$(this).find(".shortText").css('display', 'none');
-		// 		$(this).find(".allText").css('display', 'block');
+var countID = 1;
 
-		// });
+function setAdminList (id, text) {
+	var crRow = document.createElement("tr"),
+	oneCell = document.createElement("td"),
+	twoCell = document.createElement("td"),
+	threeCell = document.createElement("td"),
+	fourCell = document.createElement("td"),
+	span = document.createElement("span"),
+	span2 = document.createElement("span");
+
+			//первая ячейка
+			oneCell.setAttribute('class', 'table-id-row'); 
+			oneCell.innerHTML = countID; 
+
+			//вторая ячейка
+			twoCell.setAttribute('class', "table-title-row"); 
+			twoCell.innerHTML = text;
+
+			//трейтья ячейка
+			threeCell.setAttribute('id', "table-cor_" + id); 
+			threeCell.setAttribute('class', "ui-state-default ui-corner-all table-button-cor");  
+			span.setAttribute('class', "ui-icon ui-icon-pencil");
+			threeCell.appendChild(span);
+
+			//четвертая ячейка 
+			fourCell.setAttribute('id', 'table-del_' + id);
+			fourCell.setAttribute('class', 'ui-state-default ui-corner-all table-button-del'); 
+			span2.setAttribute('class', 'ui-icon ui-icon-trash');
+			fourCell.appendChild(span2);
+
+		
+
+
+			crRow.appendChild(oneCell);
+			crRow.appendChild(twoCell);
+			crRow.appendChild(threeCell);
+			crRow.appendChild(fourCell);
+
+			$('.table').append(crRow);
+			countID++;
+		}
+
+
+		$('#table-add').click(function(){
+			location.href = 'add.php';
+		});
+
+		$('#addNews').click(function(){
+
+		var title = $('input[name="add-title"]')[0].value;
+		var shortText = $('input[name="add-shortText"]')[0].value;
+		var text = $('textarea[name="add-text"]')[0].value;
+		var idAuthor = 1;
+		post.addNews(title, shortText, text, idAuthor);
+
+		document.location.href = "index_admin.php?add=added";
+	});
+
+		// удаление статьи
+		function dellNews () {
+			$('td[class="ui-state-default ui-corner-all table-button-del"').click(function(){
+
+				var idnews = $(this).attr('id');
+				console.log(idnews);
+				var idNews = idnews.split('_');
+				post.deleted(idNews[1]);
+				// console.log(q[1]);
+			});
+		}
+				// корректировка статьи
+				function editionNews () {
+					$('td[class="ui-state-default ui-corner-all table-button-cor"').click(function(){
+
+						var idnews = $(this).attr('id');
+						console.log(idnews);
+						var idNews = idnews.split('_');
+						$('.content-index').css('display', 'none');
+						$('.content-edition').css('display', 'block');
+						post.correct(idNews[1]);
+				// console.log(q[1]);
+			});
+				}
+
+
+				function setPage () {
+					post.getPost();
+				}
+
+				setPage();
+
+
 
 
 // })();
